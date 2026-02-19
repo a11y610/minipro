@@ -1,0 +1,21 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  height: 60px;
+  background: #000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+}
