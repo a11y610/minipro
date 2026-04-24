@@ -24,8 +24,8 @@ function FloorPlanUpload() {
 
       console.log("API response:", data)
 
-      // 👉 Send walls to viewer page
-      navigate("/floor-view", { state: { walls: data.walls } })
+      // 👉 Send walls and mask URL to viewer page
+      navigate("/floor-view", { state: { walls: data.walls, maskUrl: data.maskUrl } })
 
     } catch (error) {
       console.error("Upload error:", error)
