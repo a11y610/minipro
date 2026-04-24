@@ -1,8 +1,11 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
+import NeuralBackground from "../components/NeuralBackground"
 
 function Home() {
   return (
+    <>
+    <NeuralBackground />
     <motion.div
       className="hero"
       initial={{ opacity: 0, y: 60 }}
@@ -36,11 +39,16 @@ function Home() {
           Start Exploring
         </Link>
 
+        <Link to="/generate-3d" className="primary-btn">
+          Generate 3D from Photos
+        </Link>
+
         <Link to="/about" className="secondary-btn">
           Learn More
         </Link>
       </motion.div>
     </motion.div>
+    </>
   )
 }
 

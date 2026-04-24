@@ -4,6 +4,9 @@ import Home from "./pages/Home"
 import ViewerPage from "./pages/ViewerPage"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
+import TestPage from "./pages/TestPage"
+import FloorPlanUpload from "./pages/FloorPlanUpload"
+import FloorView from "./pages/FloorView"
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/viewer" element={<ViewerPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/floor-upload" element={<FloorPlanUpload />} />
+          <Route path="/floor-view" element={<FloorView />} />
         </Routes>
       </div>
     </div>

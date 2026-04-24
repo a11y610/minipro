@@ -1,6 +1,7 @@
 import { useState } from "react"
 import UploadArea from "../components/UploadArea"
 import Viewer from "../components/Viewer"
+import NeuralBackground from "../components/NeuralBackground"
 
 function ViewerPage() {
   const [fileUrl, setFileUrl] = useState(null)
@@ -19,6 +20,7 @@ function ViewerPage() {
 
   return (
     <>
+    <NeuralBackground />
       {!fileUrl && <UploadArea onFileSelect={handleFileSelect} />}
       {fileUrl && (
         <Viewer

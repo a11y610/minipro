@@ -1,7 +1,10 @@
 import { motion } from "framer-motion"
+import NeuralBackground from "../components/NeuralBackground"
 
 function Contact() {
   return (
+    <>
+    <NeuralBackground/>
     <motion.div
       className="glass-page"
       initial={{ opacity: 0, y: 60 }}
@@ -20,6 +23,7 @@ function Contact() {
         <p><strong>Location:</strong> India</p>
       </div>
     </motion.div>
+    </>
   )
 }
 

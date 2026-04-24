@@ -1,12 +1,15 @@
 import { motion } from "framer-motion"
+import NeuralBackground from "../components/NeuralBackground"
 
 function About() {
   return (
-    <motion.div
-      className="glass-page"
-      initial={{ opacity: 0, y: 60 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+    <>
+      <NeuralBackground />
+      <motion.div
+        className="glass-page"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
     >
       <h2>About 3D Viewer Pro</h2>
 
@@ -27,6 +30,7 @@ function About() {
         real-time graphics handling and modern SaaS UI design.
       </p>
     </motion.div>
+    </>
   )
 }
 

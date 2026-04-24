@@ -1,4 +1,5 @@
 /* ================= ROOT ================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@300;400;500;600&display=swap');
 
 html, body, #root {
   height: 100%;
@@ -6,10 +7,15 @@ html, body, #root {
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Space Grotesk", sans-serif;  
   background: #0f0f0f;
   color: #e5e7eb;
   overflow-x: hidden;
+  overflow-y: scroll;
+}
+h1, h2, h3 {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
 }
 
 /* Animated gradient background */
@@ -53,20 +59,25 @@ body::before {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 70px);
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar {
-  height: 70px;
-  background: rgba(10, 15, 30, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 60px;
-  z-index: 1000;
+
+  width: 100%;
+  height: 70px;
+
+  padding: 0 40px;
+  box-sizing: border-box;
+
+  flex-shrink: 0;
 }
 
 .navbar h2 {
@@ -164,6 +175,34 @@ body::before {
 
 .navbar-links a:hover::after {
   width: 100%;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 200px;
+}
+
+.logo {
+  height: 36px;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 600;
+  transform: translateZ(0);
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #d1d5db;
+  font-weight: 500;
 }
 
 /* ================= HOME PAGE ================= */
@@ -397,73 +436,100 @@ body::before {
 
 /* ================= HERO SECTION ================= */
 
-.hero {
-  height: calc(100vh - 70px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.generate-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
   text-align: center;
-  position: relative;
 }
 
+.upload-box {
+  margin-top: 30px;
+  padding: 40px;
+  border: 2px dashed rgba(255,255,255,0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.upload-box input {
+  margin-top: 10px;
+}
+
+.preview-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.preview-grid img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero {
+  max-width: 800px;
+  margin: auto;
+  padding: 60px 40px;
+  border-radius: 16px;
+
+  background: rgba(20, 25, 40, 0.45);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  text-align: center;
+}
 .hero h1 {
-  font-size: 52px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  background: linear-gradient(
-    90deg,
-    #7c3aed,
-    #2563eb
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: floatText 4s ease-in-out infinite alternate;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
-
-@keyframes floatText {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(-8px);
-  }
-}
-
 .hero p {
-  font-size: 18px;
-  color: #94a3b8;
-  font-weight: 400;
-  margin-top: 20px;
+  margin-top: 14px;
+  font-size: 1.1rem;
+  color: rgba(220,220,230,0.75);
 }
-
-.hero-buttons {
-  margin-top: 40px;
-  display: flex;
-  gap: 20px;
-}
-
 .primary-btn {
-  padding: 14px 28px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  padding: 12px 26px;
+  border-radius: 8px;
+
+  background: #2563eb;
+  border: none;
+
   color: white;
+  font-weight: 500;
+  cursor: pointer;
   text-decoration: none;
-  transition: 0.3s;
-}
 
+  transition: all 0.25s ease;
+}
 .primary-btn:hover {
-  box-shadow:
-    0 0 20px rgba(124, 58, 237, 0.6),
-    0 0 40px rgba(37, 99, 235, 0.6);
+  transform: translateY(-2px);
+  background: #1e4ed8;
 }
-
 .secondary-btn {
-  padding: 14px 28px;
-  border-radius: 14px;
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  color: #cbd5e1;
+  padding: 12px 24px;
+  border-radius: 8px;
+
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
   text-decoration: none;
+
+  color: white;
+}
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.05);
+}
+.hero-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 /* ================= GLASS PAGE ================= */
