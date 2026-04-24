@@ -39,8 +39,8 @@ function Home() {
           Start Exploring
         </Link>
 
-        <Link to="/generate-3d" className="primary-btn">
-          Generate 3D from Photos
+        <Link to="/floor-upload" className="primary-btn">
+          Floor Plan 3D
         </Link>
 
         <Link to="/about" className="secondary-btn">
