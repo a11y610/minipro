@@ -1,7 +1,7 @@
 const express = require("express")
 const multer = require("multer")
 const cors = require("cors")
-const { exec } = require("child_process")
+const { execFile } = require("child_process")
 const path = require("path")
 const fs = require("fs")
 
@@ -9,6 +9,9 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+// Serve uploaded files (including mask images) as static assets
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
 // -------------------------------
 // Multer Storage Config
@@ -41,13 +44,15 @@ app.post("/upload-floorplan", upload.single("image"), (req, res) => {
   }
 
   const imagePath = req.file.path
+  // Derive a stable base name from the uploaded filename (no extension)
+  const baseName = path.basename(req.file.filename, path.extname(req.file.filename))
 
   console.log("Blueprint uploaded:", imagePath)
 
-  // Run Python script
+  // Run Python script — use execFile to avoid shell injection
   const pythonScript = path.join(__dirname, "processing", "floorplan_to_json.py")
 
-  exec(`python ${pythonScript} ${imagePath}`, (error, stdout, stderr) => {
+  execFile("python", [pythonScript, imagePath, baseName], (error, stdout, stderr) => {
 
     if (error) {
       console.error("Python error:", error)
@@ -59,7 +64,8 @@ app.post("/upload-floorplan", upload.single("image"), (req, res) => {
 
       res.json({
         message: "Processing successful",
-        walls: result
+        walls: result.walls,
+        maskUrl: `/uploads/${result.maskFile}`
       })
 
     } catch (err) {

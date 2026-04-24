@@ -532,7 +532,20 @@ body::before {
   gap: 16px;
 }
 
-/* ================= GLASS PAGE ================= */
+/* ================= TERMINAL LOGS ================= */
+
+@keyframes terminalBlink {
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: #00ff8c;
+  margin-left: 2px;
+  animation: terminalBlink 1s step-start infinite;
+}
 
 .glass-page {
   max-width: 900px;
