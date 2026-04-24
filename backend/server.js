@@ -52,11 +52,27 @@ app.post("/upload-floorplan", upload.single("image"), (req, res) => {
   // Run Python script — use execFile to avoid shell injection
   const pythonScript = path.join(__dirname, "processing", "floorplan_to_json.py")
 
-  execFile("python", [pythonScript, imagePath, baseName], (error, stdout, stderr) => {
+  // Try python3 first (standard on Linux/Mac), fall back to python (Windows / some envs)
+  const tryExec = (executables, args, callback) => {
+    if (executables.length === 0) {
+      return callback(new Error("No Python executable found (tried python3, python)"))
+    }
+    const exe = executables[0]
+    const rest = executables.slice(1)
+    execFile(exe, args, (error, stdout, stderr) => {
+      if (error && rest.length > 0) {
+        return tryExec(rest, args, callback)
+      }
+      callback(error, stdout, stderr)
+    })
+  }
+
+  tryExec(["python3", "python"], [pythonScript, imagePath, baseName], (error, stdout, stderr) => {
 
     if (error) {
       console.error("Python error:", error)
-      return res.status(500).json({ error: "Processing failed" })
+      if (stderr) console.error("Python stderr:", stderr)
+      return res.status(500).json({ error: "Processing failed", detail: error.message })
     }
 
     try {
